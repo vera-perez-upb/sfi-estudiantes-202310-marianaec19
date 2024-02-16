@@ -1,6 +1,6 @@
 # UNIDAD 1
 
-Ejercicio 3
+# Ejercicio 3
 
 Ejecute el código, lo salve y lo envie al microcontrolador Rasperry Pi Pico
 
@@ -42,3 +42,13 @@ void loop() {
   }
 }
 ```
+
+# Ejercicio 4
+REPO del grupo: 
+
+
+# Ejercicio 5
+*Actualizar info de documentación en mis propias palabras
+
+# Ejercicio 6
+

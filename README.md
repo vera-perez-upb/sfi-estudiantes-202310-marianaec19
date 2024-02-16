@@ -22,7 +22,7 @@ void loop() {
   }
 }
 ```
-Luego Modifique el codigo (como se muestra abajo) y cambie el 100 por un 500 y la luz empezo a parpadear más lento 
+Luego Modifique el código (como se muestra abajo) y cambie el 100 por un 500 y la luz empezo a parpadear más lento 
 
 ```
 void setup() {

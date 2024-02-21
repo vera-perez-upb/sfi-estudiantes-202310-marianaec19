@@ -117,12 +117,12 @@ void loop()
 
 ```
 ¿Cómo se ejecuta este programa?
-El programa utiliza una maquina de estado para realizar ciertas tareas. Se crea una clase que contiene ambos estados INIT y WAIT TIMEOUT, donde INIT inicializa el puerto del Monitor Serial de la board, inicializa la variable lastTime y posteriormente declara el seguiente estado WAIT_TIMEOUT donde realiza un print al serial monitor. Despues, el siguiente caso del switch verifica en que estado se encuentra el Task 1State, donde deberia estar en WAIT_TIMEOUT, se accede a este case donde se declara e inicializa una nueva variable llamada currentTime. Se realiza un if statement, donde se verifica si la diferencia de currentTime y lastTime son mayores o iguales que un intervalo (que equivale a 1s), si esto se cumple, realiza un print mediante el serial monitor donde se ve el tiempo actual y regresa al principio del switch statement, donde se cumple el ciclo: Se verifica si se encuentra en WAIT_TIMEOUT y se empieza a contar, cuando el conteo exceda el intervalo, se printea el tiempo actual, y se repite.
+El programa utiliza una maquina de estado para realizar ciertas tareas. INIT inicializa el puerto del monitor serial de la rasperry, inicializa la variable ```lastTime``` y despues declara el seguiente estado ```WAIT_TIMEOUT``` donde realiza un print al monitor serialr. Despues, el siguiente caso del switch verifica en que estado se encuentra el ```Task 1State```, donde deberia estar en ```WAIT_TIMEOUT```, se va a este caso donde se declara y se inicializa una nueva variable llamada ```currentTime```. Se realiza un if statement, donde se determina si la diferencia de ```currentTime``` y ```lastTime``` son mayores o iguales ql intervalo, si esto se cumple, realiza un print mediante el monitor serial donde se aprecia el tiempo actual y se devuelve al inicio del switch statement, donde se completae el ciclo: Se verifica si se encuentra en ```WAIT_TIMEOUT``` y se empieza a contar, cuando el conteo sobrepase el intervalo, se realiza el print en el tiempo actual, y se repite (ya que es un bucle).
 
 Pudiste ver este mensaje: ```Serial. print ("Task1States: :WAIT _TIMEOUT\n");``` - ¿Por qué crees que ocurre esto?
-Se deja saber mediante un print al monitor serial que el estado al que se acaba de pasar es al de WAIT TIMEOUT
+Indica por medio del monitor serial que el estado siguiente es el ```WAIT TIMEOUT```.
 
-¿Cuántas veces se ejecuta el código en el case Task1States:INIT? R/: Una vez, cuando se inicializa el programa por primera vez, ya que una vez iniciado, nunca se regresa a este estado, pues el switch case nunca lo permite.
+¿Cuántas veces se ejecuta el código en el case Task1States:INIT? Una vez, cuando se inicializa el programa (la primera vez), ya que luego de iniciarse, nunca regresara al estado indicado, puesto que el switch no lo permitirá.
 
 # Ejercicio 8
 ```

@@ -44,7 +44,7 @@ void loop() {
 ```
 
 # Ejercicio 4
-REPO del grupo: 
+REPO del grupo: https://github.com/MateoJimenezFamaArt/RASPBERRY_PICO.git
 
 
 # Ejercicio 5

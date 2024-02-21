@@ -123,3 +123,45 @@ Pudiste ver este mensaje: ```Serial. print ("Task1States: :WAIT _TIMEOUT\n");```
 Se deja saber mediante un print al monitor serial que el estado al que se acaba de pasar es al de WAIT TIMEOUT
 
 ¿Cuántas veces se ejecuta el código en el case Task1States:INIT? R/: Una vez, cuando se inicializa el programa por primera vez, ya que una vez iniciado, nunca se regresa a este estado, pues el switch case nunca lo permite.
+
+# Ejercicio 8
+```
+void setup()
+{
+  Serial.begin(115200);
+}
+
+void loop()
+{
+  static uint32_t lastTime = 0;
+  static uint8_t currentState = 0;
+
+  uint32_t currentTime = millis();
+
+  const uint32_t intervalos[] = {1000, 2000, 3000};
+
+  if (currentTime - lastTime >= intervals[currentState])
+  {
+    switch (currentState)
+    {
+    case 1:
+      Serial.println("Primer mensaje.");
+      break;
+    case 2:
+      Serial.println("Segundo mensaje.");
+      break;
+    case 3:
+      Serial.println("Tercer mensaje.");
+      break;
+    }
+
+    
+    lastTime = currentTime;
+    currentState = (currentState + 1) % 3; 
+  }
+}
+```
+
+Estados del Programa: El programa tiene tres estados (currentState). Los estados son 1, 2 y 3, y cada estado corresponde a un intervalo de tiempo (1 segundo, 2 segundos, 3 segundos).
+Eventos: Uno de los eventos es el tiempo. El temporizador se usa para revisar que ya ha pasado el tiempo para relizar cierta tarea y luego cambiar al siguiente estado.
+Acciones: Las acciones están determinadas por el estado actual. Se envía al puerto serie (Serial.println) un mensaje cuando se alcanza el tiempo determinado por cada estado.

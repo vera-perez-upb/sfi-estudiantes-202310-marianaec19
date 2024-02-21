@@ -166,7 +166,7 @@ Estados del Programa: El programa tiene tres estados (currentState). Los estados
 Eventos: Uno de los eventos es el tiempo. El temporizador se usa para revisar que ya ha pasado el tiempo para relizar cierta tarea y luego cambiar al siguiente estado.
 Acciones: Las acciones están determinadas por el estado actual. Se envía al puerto serie (Serial.println) un mensaje cuando se alcanza el tiempo determinado por cada estado.
 
-#Ejercicio 9
+# Ejercicio 9
 ```
 void task1()
 {

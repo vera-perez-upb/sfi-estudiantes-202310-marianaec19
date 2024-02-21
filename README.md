@@ -165,3 +165,145 @@ void loop()
 Estados del Programa: El programa tiene tres estados (currentState). Los estados son 1, 2 y 3, y cada estado corresponde a un intervalo de tiempo (1 segundo, 2 segundos, 3 segundos).
 Eventos: Uno de los eventos es el tiempo. El temporizador se usa para revisar que ya ha pasado el tiempo para relizar cierta tarea y luego cambiar al siguiente estado.
 Acciones: Las acciones están determinadas por el estado actual. Se envía al puerto serie (Serial.println) un mensaje cuando se alcanza el tiempo determinado por cada estado.
+
+#Ejercicio 9
+```
+void task1()
+{
+    enum class Task1States
+    {
+        INIT,
+        WAIT_FOR_TIMEOUT
+    };
+
+    static Task1States task1State = Task1States::INIT;
+    static uint32_t lastTime;
+    static constexpr uint32_t INTERVALA = 1000;
+
+    switch(task1State)
+    {
+        case Task1States::INIT:
+        {
+            Serial1.begin(115200);
+            lastTime = millis();
+            task1State = Task1States::WAIT_FOR_TIMEOUT;
+            break;
+        }
+
+        case Task1States::WAIT_FOR_TIMEOUT:
+        {
+          uint32_t currentTime = millis();
+            if( (currentTime - lastTime) >= INTERVALA)
+             {
+                lastTime = currentTime;
+                Serial1.print("mensaje a 1Hz from A interval\n");
+                delay(4000);
+             }
+            break;
+        }
+
+        default:
+        {
+            break;
+        }
+    }
+}
+
+void task2()
+{
+    enum class Task2States
+    {
+        INIT,
+        WAIT_FOR_TIMEOUT
+    };
+
+    static Task2States task2State = Task2States::INIT;
+    static uint32_t lastTime;
+    static constexpr uint32_t INTERVALB = 2000;
+
+    switch(task2State)
+    {
+        case Task2States::INIT:
+        {
+            Serial1.begin(115200);
+            lastTime = millis();
+            task2State = Task2States::WAIT_FOR_TIMEOUT;
+            break;
+        }
+
+        case Task2States::WAIT_FOR_TIMEOUT:
+        {
+           uint32_t currentTime = millis();
+            if( (currentTime - lastTime) >= INTERVALB)
+            {
+                lastTime = currentTime;
+                Serial1.print("mensaje a 0.5Hz from B interval\n");
+            }
+            break;
+        }
+
+        default:
+        {
+            break;
+        }
+    }
+}
+
+void task3()
+{
+    enum class Task3States
+    {
+        INIT,
+        WAIT_FOR_TIMEOUT
+    };
+
+    static Task3States task3State = Task3States::INIT;
+    static uint32_t lastTime;
+    static constexpr uint32_t INTERVALC = 4000;
+
+    switch(task3State)
+    {
+        case Task3States::INIT:
+        {
+            Serial1.begin(115200);
+            lastTime = millis();
+            task3State = Task3States::WAIT_FOR_TIMEOUT;
+            break;
+        }
+
+        case Task3States::WAIT_FOR_TIMEOUT:
+        {
+           uint32_t currentTime = millis();
+            if( (currentTime - lastTime) >= INTERVALC)
+            {
+                lastTime = currentTime;
+                Serial1.print("mensaje a 0.25Hz from C interval\n");
+            }
+            break;
+        }
+
+        default:
+        {
+            break;
+        }
+    }
+}
+ 
+void setup() 
+{
+  task1();
+  task2(); 
+  task3();
+}
+
+void loop() 
+{
+  task1();
+  task2();
+  task3();
+}
+```
+
+Documented Bugs
+Archivo de Arduino IDE no ejecutando de manera correcta. Error lanzado: Syntax
+Lo resolvimos de una manera inusual. Al momento de seguir el trayecto de acitividades, nos dimos cuenta que estabamos teniendo problemas para flashear el microcontrolador del Raspberry Pico que teniamos. El IDE mencionaba que teniamos errores en el syntax de la escritura del codigo, especificamente, al momento de compilar, la consola del IDE decia que no era posible compilar debido a que la IDE estaba sobreescribiendo las funciones bases del Arduino como el void setupO y el void loop0, pero esta era imposible ya que habiamos copiado el codigo multiples veces y revisado la syntaxis multiples veces. Al final recurrimos a aislar el archivo en cuestion dentro de su propio folder, y al momento de abrirlo e intentar flashearlo al Pico, funciono de manera adecuada. No entendemos cual podria ser la causa, sin embargo, puede ser posible que al tener multiples archivos ino dentro de un mismo folder puede llevar a problemas el momento de compilarlos, ya que el compiler no tiene en cuenta cual archivo es cual. 

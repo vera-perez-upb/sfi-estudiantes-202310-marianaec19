@@ -306,4 +306,71 @@ void loop()
 
 Documented Bugs
 Archivo de Arduino IDE no ejecutando de manera correcta. Error lanzado: Syntax
-Lo resolvimos de una manera inusual. Al momento de seguir el trayecto de acitividades, nos dimos cuenta que estabamos teniendo problemas para flashear el microcontrolador del Raspberry Pico que teniamos. El IDE mencionaba que teniamos errores en el syntax de la escritura del codigo, especificamente, al momento de compilar, la consola del IDE decia que no era posible compilar debido a que la IDE estaba sobreescribiendo las funciones bases del Arduino como el void setupO y el void loop0, pero esta era imposible ya que habiamos copiado el codigo multiples veces y revisado la syntaxis multiples veces. Al final recurrimos a aislar el archivo en cuestion dentro de su propio folder, y al momento de abrirlo e intentar flashearlo al Pico, funciono de manera adecuada. No entendemos cual podria ser la causa, sin embargo, puede ser posible que al tener multiples archivos ino dentro de un mismo folder puede llevar a problemas el momento de compilarlos, ya que el compiler no tiene en cuenta cual archivo es cual. 
+Lo resolvimos de una manera inusual. Al momento de seguir el trayecto de acitividades, nos dimos cuenta que estabamos teniendo problemas para flashear el microcontrolador del Raspberry Pico que teniamos. El IDE mencionaba que teniamos errores en el syntax de la escritura del codigo, especificamente, al momento de compilar, la consola del IDE decia que no era posible compilar debido a que la IDE estaba sobreescribiendo las funciones bases del Arduino como el void setupO y el void loop0, pero esta era imposible ya que habiamos copiado el codigo multiples veces y revisado la syntaxis multiples veces. Al final recurrimos a aislar el archivo en cuestion dentro de su propio folder, y al momento de abrirlo e intentar flashearlo al Pico, funciono de manera adecuada. No entendemos cual podria ser la causa, sin embargo, puede ser posible que al tener multiples archivos ino dentro de un mismo folder puede llevar a problemas el momento de compilarlos, ya que el compiler no tiene en cuenta cual archivo es cual.
+
+# Ejercicio 10
+Configuración ScriptCommunicator.
+
+# Ejercicio 11
+
+```
+void task1()
+{
+    enum class Task1States    {
+        INIT,
+        WAIT_DATA
+    };
+    static Task1States task1State = Task1States::INIT;
+
+    switch (task1State)
+    {
+    case Task1States::INIT:
+    {
+        Serial.begin(115200);
+        task1State = Task1States::WAIT_DATA;
+        break;
+    }
+
+    case Task1States::WAIT_DATA:
+    {
+        // evento 1:        // Ha llegado al menos un dato por el puerto serial?        if (Serial.available() > 0)
+        {
+            Serial.read();
+            Serial.print("Hola computador\n");
+        }
+        break;
+    }
+
+    default:
+    {
+        break;
+    }
+    }
+}
+
+void setup()
+{
+    task1();
+}
+
+void loop()
+{
+    task1();
+}
+
+```
+
+1. Analiza el programa. ¿Por qué enviaste la letra con el botón send? ¿Qué evento verifica si ha llegado algo por el puerto serial?
+2. Analiza los números que se ven debajo de las letras. Nota que luego de la r, abajo, hay un número. ¿Qué es ese número?
+3. ¿Qué relación encuentras entre las letras y los números?
+4. ¿Qué es el 0a al final del mensaje y para qué crees que sirva?
+5. Nota que luego de verificar si hay datos en el puerto serial se DEBE HACER UNA LECTURA del puerto. Esto se hace para retirar del puerto el dato que llegó. Si esto no se hace entonces parecerá que siempre tiene un datos disponible en el serial para leer. ¿Tiene sentido esto? Si no es así habla con el profe.
+
+El evento que verifica si ha llegado algo por el puerto serial es la condición if (Serial.available() > 0) en la sección WAIT_DATA del programa.
+El número debajo de la R es 114.
+Cada letra tiene un valor numérico asociado según la tabla ASCII.
+El '0a' al final del mensaje corresponde al valor hexadecimal 0A en la tabla ASCII, que representa un carácter de nueva línea. Este carácter indica un salto.
+Tiene sentido, porque después de verificar si hay datos disponibles en el serial port, se realiza el Serial.read() para quitar el dato que llegó. De lo contrario parecerá que siempre hay datos disponibles para leer en el puerto serial.
+
+# Ejercicio 12
+

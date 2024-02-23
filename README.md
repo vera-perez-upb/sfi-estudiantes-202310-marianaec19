@@ -124,6 +124,9 @@ Indica por medio del monitor serial que el estado siguiente es el ```WAIT TIMEOU
 
 ¿Cuántas veces se ejecuta el código en el case Task1States:INIT? Una vez, cuando se inicializa el programa (la primera vez), ya que luego de iniciarse, nunca regresara al estado indicado, puesto que el switch no lo permitirá.
 
+# Ejercicio 7
+Análisis del programa de prueba 
+
 # Ejercicio 8
 ```
 void setup()

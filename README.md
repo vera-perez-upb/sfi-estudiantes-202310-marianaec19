@@ -449,3 +449,24 @@ Se utiliza el operador de indirección * para acceder al valor almacenado en la 
 ¿Cómo se puede escribir el contenido de una variable por medio de un puntero?
 
 Se utiliza el operador de indirección * junto con la asignación para modificar el valor almacenado en la dirección a la que apunta el puntero. Por ejemplo: *ptr = 42; asigna el valor 42 a la variable a la que apunta ptr.
+
+# Ejercicio 13 
+Hipótesis:
+
+El programa parece tener dos funciones adicionales además de task1 llamadas changeVar y printVar. En la función task1, se inicializa Serial y se espera un evento en el puerto serial. Cuando llega un dato, se lee un byte y se inicializa una variable var como 0. Se crea un puntero pvar que apunta a la dirección de var. Luego, se imprime el contenido de var utilizando la función printVar, se cambia el valor de var a 10 utilizando la función changeVar y, finalmente, se imprime nuevamente el contenido de var.
+
+Ejecución y Comparación:
+
+Al ejecutar el programa, se espera que la función printVar imprima el contenido de var antes y después de llamar a changeVar. La función changeVar modifica el valor de var a 10. Por lo tanto, se esperaría ver dos líneas impresas por printVar: una con el valor inicial de var (0) y otra con el valor modificado (10).
+
+Posibles Resultados:
+
+Primera Línea: "var content: 0"
+Segunda Línea: "var content: 10"
+Al comparar el resultado con la hipótesis, si se obtienen estas dos líneas, el programa está funcionando según lo previsto. Si no es así, se debe analizar la ejecución para comprender por qué difiere de la hipótesis.
+
+
+
+
+
+

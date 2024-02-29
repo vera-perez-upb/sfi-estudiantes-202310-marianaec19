@@ -499,3 +499,30 @@ int main() {
     return 0;
 }
 ```
+# Ejercicio 15
+¿Por qué es necesario declarar rxData static? y si no es static ¿Qué pasa?
+
+Al declarar rxData como static, la variable conserva su valor entre las llamadas sucesivas a la función task1. Si no se declara como static, la variable se reiniciaría a cero cada vez que se ingresa a la función, lo que podría provocar la pérdida de datos entre llamadas. Al ser static, rxData mantiene su valor incluso cuando la función task1 sale de su ámbito y luego vuelve a entrar.
+
+¿dataCounter se define static y se inicializa en 0. Cada vez que se ingrese a la función loop dataCounter se inicializa a 0? ¿Por qué es necesario declararlo static?
+
+Sí, al ser declarado static, dataCounter mantiene su valor entre las llamadas a la función. Si no fuera static, se reiniciaría a cero cada vez que se ingresa a la función loop, lo que podría afectar el seguimiento del estado de la recepción de datos. La persistencia de dataCounter permite rastrear cuántos datos se han recibido hasta el momento.
+
+Observa que el nombre del arreglo corresponde a la dirección del primer elemento del arreglo. ¿Por qué es necesario?
+
+Al utilizar el nombre del arreglo (rxData) sin el operador de subíndice [], se refiere a la dirección del primer elemento del arreglo. Esto es útil al pasar el arreglo como argumento a la función processData, ya que se pasa la dirección base del arreglo.
+
+En la expresión sum = sum + (pData[i] - 0x30); observa que puedes usar el puntero pData para indexar cada elemento del arreglo mediante el operador [].
+
+Sí, pData[i] accede al i-ésimo elemento del arreglo al que apunta el puntero pData. En este caso, pData[i] - 0x30 realiza una conversión de caracteres codificados en ASCII a sus valores numéricos correspondientes. Esta conversión es necesaria porque los caracteres numéricos se envían codificados en ASCII a través del puerto serial.
+
+Finalmente, la constante 0x30 en (pData[i] - 0x30) ¿Por qué es necesaria?
+
+La constante 0x30 se utiliza para convertir los caracteres numéricos codificados en ASCII a sus equivalentes numéricos. En ASCII, los dígitos del 0 al 9 tienen códigos hexadecimales de 0x30 a 0x39. Restar 0x30 permite obtener el valor numérico real de los caracteres recibidos.
+Para probar el programa, puedes usar ScriptCommunicator en la pestaña Utf8 o Mixed para enviar una cadena de caracteres numéricos por el puerto serial de la Raspberry Pi Pico. Deberías ver la suma de los valores numéricos impresos en la consola.
+
+
+
+
+
+

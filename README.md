@@ -377,3 +377,72 @@ Tiene sentido, porque después de verificar si hay datos disponibles en el seria
 
 # Ejercicio 12
 
+```
+void task1()
+{
+    enum class Task1States    {
+        INIT,
+        WAIT_DATA
+    };
+    static Task1States task1State = Task1States::INIT;
+
+    switch (task1State)
+    {
+    case Task1States::INIT:
+    {
+        Serial.begin(115200);
+        task1State = Task1States::WAIT_DATA;
+        break;
+    }
+
+    case Task1States::WAIT_DATA:
+    {
+        // evento 1:        // Ha llegado al menos un dato por el puerto serial?        if (Serial.available() > 0)
+        {
+            // DEBES leer ese dato, sino se acumula y el buffer de recepción            // del serial se llenará.            Serial.read();
+            uint32_t var = 0;
+            // Almacena en pvar la dirección de var.            uint32_t *pvar = &var;
+            // Envía por el serial el contenido de var usando            // el apuntador pvar.            Serial.print("var content: ");
+            Serial.print(*pvar);
+            Serial.print('\n');
+            // ESCRIBE el valor de var usando pvar            *pvar = 10;
+            Serial.print("var content: ");
+            Serial.print(*pvar);
+            Serial.print('\n');
+        }
+        break;
+    }
+
+    default:
+    {
+        break;
+    }
+    }
+}
+
+void setup()
+{
+    task1();
+}
+
+void loop()
+{
+    task1();
+}
+
+```
+¿Cómo se declara un puntero?
+
+Un puntero se declara indicando el tipo de datos al que apunta, seguido por el asterisco *. Por ejemplo: int *ptr; declara un puntero a un entero.
+¿Cómo se define un puntero? (cómo se inicializa)
+
+Un puntero se inicializa asignándole la dirección de una variable del mismo tipo de datos al que apunta. Por ejemplo: int *ptr = &miVariable; inicializa el puntero ptr con la dirección de la variable miVariable.
+¿Cómo se obtiene la dirección de una variable?
+
+La dirección de una variable se obtiene utilizando el operador de dirección &. Por ejemplo: int *ptr = &miVariable; asigna la dirección de miVariable al puntero ptr.
+¿Cómo se puede leer el contenido de una variable por medio de un puntero?
+
+Se utiliza el operador de indirección * para acceder al valor almacenado en la dirección a la que apunta el puntero. Por ejemplo: int valor = *ptr; asigna a valor el contenido de la variable a la que apunta ptr.
+¿Cómo se puede escribir el contenido de una variable por medio de un puntero?
+
+Se utiliza el operador de indirección * junto con la asignación para modificar el valor almacenado en la dirección a la que apunta el puntero. Por ejemplo: *ptr = 42; asigna el valor 42 a la variable a la que apunta ptr.

@@ -466,7 +466,36 @@ Segunda Línea: "var content: 10"
 Al comparar el resultado con la hipótesis, si se obtienen estas dos líneas, el programa está funcionando según lo previsto. Si no es así, se debe analizar la ejecución para comprender por qué difiere de la hipótesis.
 
 
+# Ejercico 14
 
+```
+#include <iostream>
 
+// Función para intercambiar el valor de dos variables
+void swapValues(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
 
+int main() {
+    // Variables iniciales
+    int variable1 = 5;
+    int variable2 = 10;
 
+    // Mostrar valores iniciales
+    std::cout << "Antes del intercambio:" << std::endl;
+    std::cout << "Variable 1: " << variable1 << std::endl;
+    std::cout << "Variable 2: " << variable2 << std::endl;
+
+    // Llamar a la función para intercambiar valores
+    swapValues(variable1, variable2);
+
+    // Mostrar valores después del intercambio
+    std::cout << "\nDespués del intercambio:" << std::endl;
+    std::cout << "Variable 1: " << variable1 << std::endl;
+    std::cout << "Variable 2: " << variable2 << std::endl;
+
+    return 0;
+}
+```

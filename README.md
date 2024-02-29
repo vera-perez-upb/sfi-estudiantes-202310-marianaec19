@@ -434,15 +434,18 @@ void loop()
 ¿Cómo se declara un puntero?
 
 Un puntero se declara indicando el tipo de datos al que apunta, seguido por el asterisco *. Por ejemplo: int *ptr; declara un puntero a un entero.
-¿Cómo se define un puntero? (cómo se inicializa)
+
+¿Cómo se define un puntero? 
 
 Un puntero se inicializa asignándole la dirección de una variable del mismo tipo de datos al que apunta. Por ejemplo: int *ptr = &miVariable; inicializa el puntero ptr con la dirección de la variable miVariable.
+
 ¿Cómo se obtiene la dirección de una variable?
 
 La dirección de una variable se obtiene utilizando el operador de dirección &. Por ejemplo: int *ptr = &miVariable; asigna la dirección de miVariable al puntero ptr.
 ¿Cómo se puede leer el contenido de una variable por medio de un puntero?
 
 Se utiliza el operador de indirección * para acceder al valor almacenado en la dirección a la que apunta el puntero. Por ejemplo: int valor = *ptr; asigna a valor el contenido de la variable a la que apunta ptr.
+
 ¿Cómo se puede escribir el contenido de una variable por medio de un puntero?
 
 Se utiliza el operador de indirección * junto con la asignación para modificar el valor almacenado en la dirección a la que apunta el puntero. Por ejemplo: *ptr = 42; asigna el valor 42 a la variable a la que apunta ptr.

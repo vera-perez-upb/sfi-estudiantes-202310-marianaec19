@@ -523,6 +523,41 @@ Para probar el programa, puedes usar ScriptCommunicator en la pestaña Utf8 o Mi
 
 
 
+# Ejercicio 16
+
+¿Qué pasa cuando hago un Serial.available()?
+
+Serial.available() devuelve el número de bytes disponibles en el buffer de recepción del puerto serial. Indica cuántos bytes están listos para ser leídos.
+
+¿Qué pasa cuando hago un Serial.read()?
+
+Serial.read() lee el primer byte disponible en el buffer de recepción y devuelve su valor como un entero. Si no hay datos disponibles, devuelve -1.
+
+¿Qué pasa cuando hago un Serial.read() y no hay nada en el buffer de recepción?
+
+Si no hay nada en el buffer de recepción, Serial.read() devuelve -1.
+Un patrón común al trabajar con el puerto serial es este:
+
+```
+if (Serial.available() > 0){
+    int dataRx = Serial.read();
+}
+```
+Este patrón verifica si hay datos disponibles en el buffer de recepción antes de intentar leer. Si hay datos, se lee el primer byte disponible.
+
+¿Cuántos datos lee Serial.read()?
+
+Serial.read() lee un byte del buffer de recepción y lo devuelve como un entero.
+
+¿Y si quiero leer más de un dato?
+
+Si deseas leer más de un dato, puedes llamar a Serial.read() varias veces en un bucle, leyendo un byte a la vez. Puedes almacenar los bytes leídos en un arreglo o procesarlos según sea necesario.
+
+ ¿Qué pasa si te envían datos por serial y se te olvida llamar Serial.read()?
+
+Si no llamas a Serial.read(), los datos en el buffer de recepción permanecerán allí y podrían acumularse. Si no lees los datos, eventualmente el buffer podría llenarse y podrías perder datos entrantes.
+
+
 
 
 

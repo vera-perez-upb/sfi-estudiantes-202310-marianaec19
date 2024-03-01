@@ -557,6 +557,42 @@ Si deseas leer más de un dato, puedes llamar a Serial.read() varias veces en un
 
 Si no llamas a Serial.read(), los datos en el buffer de recepción permanecerán allí y podrían acumularse. Si no lees los datos, eventualmente el buffer podría llenarse y podrías perder datos entrantes.
 
+# Ejercicio 17
+
+Escenario 1:
+````
+if (Serial.available() >= 3){
+    int dataRx1 = Serial.read();
+    int dataRx2 = Serial.read();
+    int dataRx3 = Serial.read();
+}
+````
+En este escenario, el código verifica si hay al menos 3 bytes disponibles en el buffer de recepción antes de leer. Si hay 3 o más bytes disponibles, se leen tres bytes usando Serial.read() y se almacenan en las variables dataRx1, dataRx2 y dataRx3. Este código es útil cuando se espera específicamente que lleguen tres bytes consecutivos y se desea procesarlos juntos.
+
+Escenario 2:
+````
+if (Serial.available() >= 2){
+    int dataRx1 = Serial.read();
+    int dataRx2 = Serial.read();
+    int dataRx3 = Serial.read();
+}
+````
+En este escenario, el código verifica si hay al menos 2 bytes disponibles en el buffer de recepción antes de leer. Sin embargo, intenta leer tres bytes. Esto podría llevar a problemas si no hay tres bytes disponibles en el buffer. Aquí están los posibles escenarios:
+
+Caso ideal: Hay al menos 2 bytes disponibles y se leen tres bytes correctamente. dataRx1, dataRx2 y dataRx3 contendrán los valores de los tres bytes leídos.
+
+Caso subóptimo: Hay exactamente 2 bytes disponibles. En este caso, se leerán dos bytes, pero el tercer Serial.read() intentará leer de un buffer vacío, y dataRx3 contendrá el valor predeterminado -1 que indica que no hay datos disponibles.
+
+Caso menos ideal: Hay menos de 2 bytes disponibles. En este caso, se leerán los bytes disponibles y los demás Serial.read() intentarán leer de un buffer vacío, y las variables restantes contendrán el valor predeterminado -1.
+
+Conclusión:
+Es crucial tener en cuenta la cantidad real de bytes disponibles en el buffer de recepción antes de intentar leer. La lógica del programa debe adaptarse a la cantidad esperada de datos y manejar los casos en los que no haya suficientes datos disponibles para evitar comportamientos inesperados.
+
+
+
+
+
+
 
 
 

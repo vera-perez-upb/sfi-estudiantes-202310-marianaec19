@@ -589,6 +589,14 @@ Conclusión:
 Es crucial tener en cuenta la cantidad real de bytes disponibles en el buffer de recepción antes de intentar leer. La lógica del programa debe adaptarse a la cantidad esperada de datos y manejar los casos en los que no haya suficientes datos disponibles para evitar comportamientos inesperados.
 
 
+# Unidad 2
+Inicio del trayecto de actividades unidad 2.
+
+# Ejercicio 1
+
+
+
+
 
 
 
